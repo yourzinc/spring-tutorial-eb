@@ -19,7 +19,7 @@ jobs:
 
       - name: (Release) Get current date
         id: date
-        run: echo "::set-output name=date::$(date + '%Y/%m/%d')"
+        run: echo "DATE=$(date + '%Y/%m/%d')" >> $GITHUB_OUTPUT
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
@@ -40,7 +40,7 @@ jobs:
 
       - name : Build Docker Image & Push to Docker Hub
         run: |
-          docker build . -t ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-tutorial-18th
+          docker build . -t ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-tutorial-18th:$DATE
           docker build ./proxy -t ${{ secrets.DOCKER_HUB_USERNAME }}/nginx
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-tutorial-18th
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-tutorial-18th:$DATE
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/nginx

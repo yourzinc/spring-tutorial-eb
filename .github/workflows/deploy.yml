@@ -17,9 +17,11 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
         shell: bash
+
 
       - name: Build with Gradle
         run: |
@@ -41,12 +43,14 @@ jobs:
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-tutorial-18th
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/nginx
 
+
       - name: Get current time
         uses: 1466587594/get-current-time@v2
         id: current-time
         with:
           format: YYYY-MM-DDTHH-mm-ss
           utcOffset: "+09:00"
+
 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v18

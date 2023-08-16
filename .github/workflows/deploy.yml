@@ -41,6 +41,6 @@ jobs:
       - name : Build Docker Image & Push to Docker Hub
         run: |
           docker build . -t ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-tutorial-18th
-          docker build ./nginx -t ${{ secrets.DOCKER_HUB_USERNAME }}/nginx
+          docker build ./proxy -t ${{ secrets.DOCKER_HUB_USERNAME }}/nginx
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-tutorial-18th
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/nginx

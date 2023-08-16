@@ -1,7 +1,9 @@
 version: "3.8"
 services:
-  springboot:
+  backend:
     image: "yourzinc/spring-boot-tutorial-18th"
+    ports:
+      - "8080:8080"
     restart: "always"
 
   nginx:
@@ -9,3 +11,5 @@ services:
     ports:
       - "80:80"
     restart: "always"
+    depends_on:
+      - "backend"
